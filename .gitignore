@@ -59,6 +59,9 @@ ipch/
 *.vsp
 *.vspx
 
+# Visual Studio ide directory (VS 2015 preview(+?))
+*.sln.ide/
+
 # Guidance Automation Toolkit
 *.gpState
 
