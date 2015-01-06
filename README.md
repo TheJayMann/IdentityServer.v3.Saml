@@ -1,4 +1,6 @@
-Thinktecture.IdentityServer.v3.WsFederation
-===========================================
+IdentityServer.v3.Saml
+======================
 
-WS-Federation Plugin for IdentityServer v3
+Saml Plugin for IdentityServer v3
+
+Based on the [WS-Federation plugin](https://github.com/thinktecture/Thinktecture.IdentityServer.v3.WsFederation) for IdentityServer v3 (master branch is the original)

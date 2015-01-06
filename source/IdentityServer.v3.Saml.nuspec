@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Thinktecture.IdentityServer.v3.WsFederation</id>
+    <id>IdentityServer.v3.Saml</id>
     <version>0.0.0</version>
-    <title>Thinktecture IdentityServer v3 WS-Federation Plugin</title>
-    <authors>Brock Allen, Dominick Baier</authors>
-    <owners>Brock Allen, Dominick Baier</owners>
-    <projectUrl>https://github.com/thinktecture/Thinktecture.IdentityServer.v3.WsFederation</projectUrl>
-    <iconUrl>http://www.thinktecture.com/images/favicon.ico</iconUrl>
+    <title>IdentityServer v3 Saml Plugin</title>
+    <authors>Emil Lerch (sourced from work by Brock Allen, Dominick Baier)</authors>
+    <owners>Emil Lerch</owners>
+    <projectUrl>https://github.com/elerch/IdentityServer.v3.Saml</projectUrl>
+    <!-- <iconUrl>http://www..com/images/favicon.ico</iconUrl> -->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>WS-Federation Plugin for Thinktecture IdentityServer v3.</description>
-    <copyright>Copyright 2014</copyright>
-    <tags>Thinktecture IdentityServer WS-Federation</tags>
+    <description>Saml Plugin for  IdentityServer v3.</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>Thinktecture IdentityServer Saml</tags>
 
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.IdentityModel" targetFramework="net45" />
