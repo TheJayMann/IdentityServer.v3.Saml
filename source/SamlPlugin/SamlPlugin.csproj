@@ -97,8 +97,8 @@
     <Compile Include="Configuration\Hosting\AutofacDependencyResolver.cs" />
     <Compile Include="Configuration\PluginAppBuilderExtensions.cs" />
     <Compile Include="Configuration\Hosting\WebApiConfig.cs" />
-    <Compile Include="Configuration\WsFederationPluginOptions.cs" />
-    <Compile Include="Configuration\WsFederationServiceFactory.cs" />
+    <Compile Include="Configuration\SamlPluginOptions.cs" />
+    <Compile Include="Configuration\SamlServiceFactory.cs" />
     <Compile Include="Configuration\Hosting\AutofacContainerMiddleware.cs" />
     <Compile Include="Configuration\Hosting\AutofacScope.cs" />
     <Compile Include="Services\Default\CookieMiddlewareCookieService.cs" />
@@ -106,7 +106,7 @@
     <Compile Include="Configuration\Hosting\LogProviderExceptionLogger.cs" />
     <Compile Include="Configuration\Hosting\NoCacheAttribute.cs" />
     <Compile Include="Configuration\Hosting\SecurityHeadersAttribute.cs" />
-    <Compile Include="Models\RelyingParty.cs" />
+    <Compile Include="Models\ServiceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseHandling\MetadataResponseGenerator.cs" />
     <Compile Include="ResponseHandling\SignInResponseGenerator.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="Services\ITrackingCookieService.cs" />
     <Compile Include="Validation\SignInValidationResult.cs" />
     <Compile Include="Validation\SignInValidator.cs" />
-    <Compile Include="WsFederationController.cs" />
+    <Compile Include="SamlController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\default.licenseheader">
