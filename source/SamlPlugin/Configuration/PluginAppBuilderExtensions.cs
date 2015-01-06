@@ -18,8 +18,8 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
-using Thinktecture.IdentityServer.WsFederation.Configuration;
-using Thinktecture.IdentityServer.WsFederation.Hosting;
+using IdentityServer.v3.Saml.Configuration;
+using IdentityServer.v3.Saml.Hosting;
 
 namespace Thinktecture.IdentityServer.Core.Configuration
 {

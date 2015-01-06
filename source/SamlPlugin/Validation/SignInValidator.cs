@@ -19,16 +19,16 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Thinktecture.IdentityServer.Core.Extensions;
 using Thinktecture.IdentityServer.Core.Logging;
-using Thinktecture.IdentityServer.WsFederation.Services;
+using IdentityServer.v3.Saml.Services;
 
-namespace Thinktecture.IdentityServer.WsFederation.Validation
+namespace IdentityServer.v3.Saml.Validation
 {
     public class SignInValidator
     {
         private readonly static ILog Logger = LogProvider.GetCurrentClassLogger();
-        private readonly IRelyingPartyService _relyingParties;
+        private readonly IServiceProviderService _relyingParties;
 
-        public SignInValidator(IRelyingPartyService relyingParties)
+        public SignInValidator(IServiceProviderService relyingParties)
         {
             _relyingParties = relyingParties;
         }
@@ -69,7 +69,7 @@ namespace Thinktecture.IdentityServer.WsFederation.Validation
             result.ReplyUrl = rp.ReplyUrl;
             Logger.InfoFormat("Reply URL set to: " + result.ReplyUrl);
 
-            result.RelyingParty = rp;
+            result.ServiceProvider = rp;
             result.SignInRequestMessage = message;
             result.Subject = subject;
 

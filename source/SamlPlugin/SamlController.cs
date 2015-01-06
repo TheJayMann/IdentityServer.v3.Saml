@@ -26,14 +26,14 @@ using Thinktecture.IdentityServer.Core.Logging;
 using Thinktecture.IdentityServer.Core.Models;
 using Thinktecture.IdentityServer.Core.Results;
 using Thinktecture.IdentityServer.Core.Services;
-using Thinktecture.IdentityServer.WsFederation.Configuration;
-using Thinktecture.IdentityServer.WsFederation.Hosting;
-using Thinktecture.IdentityServer.WsFederation.ResponseHandling;
-using Thinktecture.IdentityServer.WsFederation.Results;
-using Thinktecture.IdentityServer.WsFederation.Services;
-using Thinktecture.IdentityServer.WsFederation.Validation;
+using IdentityServer.v3.Saml.Configuration;
+using IdentityServer.v3.Saml.Hosting;
+using IdentityServer.v3.Saml.ResponseHandling;
+using IdentityServer.v3.Saml.Results;
+using IdentityServer.v3.Saml.Services;
+using IdentityServer.v3.Saml.Validation;
 
-namespace Thinktecture.IdentityServer.WsFederation
+namespace IdentityServer.v3.Saml
 {
     [HostAuthentication(Constants.PrimaryAuthenticationType)]
     [RoutePrefix("")]

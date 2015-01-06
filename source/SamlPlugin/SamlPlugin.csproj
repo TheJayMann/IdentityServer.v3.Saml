@@ -7,8 +7,8 @@
     <ProjectGuid>{4C93CD29-54C0-43CC-BF45-68E0DEC91CAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Thinktecture.IdentityServer.v3.WsFederation</RootNamespace>
-    <AssemblyName>Thinktecture.IdentityServer.v3.WsFederation</AssemblyName>
+    <RootNamespace>IdentityServer.v3.Saml</RootNamespace>
+    <AssemblyName>IdentityServer.v3.Saml</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

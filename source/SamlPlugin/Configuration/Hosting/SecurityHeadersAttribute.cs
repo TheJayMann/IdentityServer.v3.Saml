@@ -16,7 +16,7 @@
 using System;
 using System.Web.Http.Filters;
 
-namespace Thinktecture.IdentityServer.WsFederation.Hosting
+namespace IdentityServer.v3.Saml.Hosting
 {
     internal class SecurityHeadersAttribute : ActionFilterAttribute
     {

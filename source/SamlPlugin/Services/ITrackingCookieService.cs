@@ -17,7 +17,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Thinktecture.IdentityServer.WsFederation.Services
+namespace IdentityServer.v3.Saml.Services
 {
     public interface ITrackingCookieService
     {

@@ -21,7 +21,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Thinktecture.IdentityServer.Core.Logging;
 
-namespace Thinktecture.IdentityServer.WsFederation.Services.Default
+namespace IdentityServer.v3.Saml.Services.Default
 {
     public class CookieMiddlewareTrackingCookieService : ITrackingCookieService
     {

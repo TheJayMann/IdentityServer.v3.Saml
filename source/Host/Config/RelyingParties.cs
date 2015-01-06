@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
-using Thinktecture.IdentityServer.WsFederation.Models;
+using IdentityServer.v3.Saml.Models;
 
 namespace Host.Config
 {
     public class RelyingParties
     {
-        public static IEnumerable<RelyingParty> Get()
+        public static IEnumerable<ServiceProvider> Get()
         {
-            return new List<RelyingParty>
+            return new List<ServiceProvider>
             {   
-                new RelyingParty
+                new ServiceProvider
                 {
                     Realm = "urn:testrp",
                     Name = "Test RP",
@@ -26,7 +26,7 @@ namespace Host.Config
                         { "email", ClaimTypes.Email }
                     }
                 },
-                new RelyingParty
+                new ServiceProvider
                 {
                     Realm = "urn:owinrp",
                     Enabled = true,

@@ -27,9 +27,9 @@ using Thinktecture.IdentityServer.Core.Configuration;
 using Thinktecture.IdentityServer.Core.Extensions;
 using Thinktecture.IdentityServer.Core.Logging;
 using Thinktecture.IdentityServer.Core.Services;
-using Thinktecture.IdentityServer.WsFederation.Validation;
+using IdentityServer.v3.Saml.Validation;
 
-namespace Thinktecture.IdentityServer.WsFederation.ResponseHandling
+namespace IdentityServer.v3.Saml.ResponseHandling
 {
     public class SignInResponseGenerator
     {
@@ -56,7 +56,7 @@ namespace Thinktecture.IdentityServer.WsFederation.ResponseHandling
             // return response
             var rstr = new RequestSecurityTokenResponse
             {
-                AppliesTo = new EndpointReference(validationResult.RelyingParty.Realm),
+                AppliesTo = new EndpointReference(validationResult.ServiceProvider.Realm),
                 Context = validationResult.SignInRequestMessage.Context,
                 ReplyTo = validationResult.ReplyUrl,
                 RequestedSecurityToken = new RequestedSecurityToken(token)
@@ -82,14 +82,14 @@ namespace Thinktecture.IdentityServer.WsFederation.ResponseHandling
         {
             var claims = await _users.GetProfileDataAsync(
                 validationResult.Subject, 
-                validationResult.RelyingParty.ClaimMappings.Keys);
+                validationResult.ServiceProvider.ClaimMappings.Keys);
 
             var mappedClaims = new List<Claim>();
 
             foreach (var claim in claims)
             {
                 string mappedType;
-                if (validationResult.RelyingParty.ClaimMappings.TryGetValue(claim.Type, out mappedType))
+                if (validationResult.ServiceProvider.ClaimMappings.TryGetValue(claim.Type, out mappedType))
                 {
                     mappedClaims.Add(new Claim(mappedType, claim.Value));
                 }
@@ -108,18 +108,18 @@ namespace Thinktecture.IdentityServer.WsFederation.ResponseHandling
         {
             var descriptor = new SecurityTokenDescriptor
             {
-                AppliesToAddress = validationResult.RelyingParty.Realm,
-                Lifetime = new Lifetime(DateTime.UtcNow, DateTime.UtcNow.AddMinutes(validationResult.RelyingParty.TokenLifeTime)),
+                AppliesToAddress = validationResult.ServiceProvider.Realm,
+                Lifetime = new Lifetime(DateTime.UtcNow, DateTime.UtcNow.AddMinutes(validationResult.ServiceProvider.TokenLifeTime)),
                 ReplyToAddress = validationResult.ReplyUrl,
                 SigningCredentials = new X509SigningCredentials(_options.SigningCertificate),
                 Subject = outgoingSubject,
                 TokenIssuerName = _options.IssuerUri,
-                TokenType = validationResult.RelyingParty.TokenType
+                TokenType = validationResult.ServiceProvider.TokenType
             };
 
-            if (validationResult.RelyingParty.EncryptingCertificate != null)
+            if (validationResult.ServiceProvider.EncryptingCertificate != null)
             {
-                descriptor.EncryptingCredentials = new X509EncryptingCredentials(validationResult.RelyingParty.EncryptingCertificate);
+                descriptor.EncryptingCredentials = new X509EncryptingCredentials(validationResult.ServiceProvider.EncryptingCertificate);
             }
 
             return CreateSupportedSecurityTokenHandler().CreateToken(descriptor);

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using Thinktecture.IdentityServer.Core.Configuration;
 using Thinktecture.IdentityServer.Core.Services.InMemory;
 using Thinktecture.IdentityServer.Host.Config;
-using Thinktecture.IdentityServer.WsFederation.Configuration;
-using Thinktecture.IdentityServer.WsFederation.Models;
-using Thinktecture.IdentityServer.WsFederation.Services;
+using IdentityServer.v3.Saml.Configuration;
+using IdentityServer.v3.Saml.Models;
+using IdentityServer.v3.Saml.Services;
 
 namespace Host
 {
@@ -45,11 +45,11 @@ namespace Host
             var factory = new WsFederationServiceFactory
             {
                 UserService = options.Factory.UserService,
-                RelyingPartyService = new Registration<IRelyingPartyService>(typeof(InMemoryRelyingPartyService))
+                RelyingPartyService = new Registration<IServiceProviderService>(typeof(InMemoryServiceProviderService))
             };
 
             // data sources for in-memory services
-            factory.Register(new Registration<IEnumerable<RelyingParty>>(RelyingParties.Get()));
+            factory.Register(new Registration<IEnumerable<ServiceProvider>>(RelyingParties.Get()));
 
             var wsFedOptions = new WsFederationPluginOptions
             {

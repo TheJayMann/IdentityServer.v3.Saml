@@ -19,9 +19,9 @@ using System.Collections.Generic;
 using Thinktecture.IdentityServer.Core.Configuration;
 using Thinktecture.IdentityServer.Core.Logging;
 using Thinktecture.IdentityServer.Core.Services;
-using Thinktecture.IdentityServer.WsFederation.Services;
+using IdentityServer.v3.Saml.Services;
 
-namespace Thinktecture.IdentityServer.WsFederation.Configuration
+namespace IdentityServer.v3.Saml.Configuration
 {
     public class WsFederationServiceFactory
     {
@@ -60,7 +60,7 @@ namespace Thinktecture.IdentityServer.WsFederation.Configuration
 
         // mandatory (external)
         public Registration<IUserService> UserService { get; set; }
-        public Registration<IRelyingPartyService> RelyingPartyService { get; set; }
+        public Registration<IServiceProviderService> RelyingPartyService { get; set; }
 
         public void Validate()
         {

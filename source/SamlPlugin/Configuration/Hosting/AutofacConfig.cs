@@ -20,12 +20,12 @@ using System;
 using Thinktecture.IdentityServer.Core.Configuration;
 using Thinktecture.IdentityServer.Core.Logging;
 using Thinktecture.IdentityServer.v3.WsFederation.Configuration.Hosting;
-using Thinktecture.IdentityServer.WsFederation.ResponseHandling;
-using Thinktecture.IdentityServer.WsFederation.Services;
-using Thinktecture.IdentityServer.WsFederation.Services.Default;
-using Thinktecture.IdentityServer.WsFederation.Validation;
+using IdentityServer.v3.Saml.ResponseHandling;
+using IdentityServer.v3.Saml.Services;
+using IdentityServer.v3.Saml.Services.Default;
+using IdentityServer.v3.Saml.Validation;
 
-namespace Thinktecture.IdentityServer.WsFederation.Configuration
+namespace IdentityServer.v3.Saml.Configuration
 {
     internal static class AutofacConfig
     {

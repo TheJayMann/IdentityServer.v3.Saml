@@ -15,12 +15,12 @@
  */
 
 using System.Threading.Tasks;
-using Thinktecture.IdentityServer.WsFederation.Models;
+using IdentityServer.v3.Saml.Models;
 
-namespace Thinktecture.IdentityServer.WsFederation.Services
+namespace IdentityServer.v3.Saml.Services
 {
-    public interface IRelyingPartyService
+    public interface IServiceProviderService
     {
-        Task<RelyingParty> GetByRealmAsync(string realm);
+        Task<ServiceProvider> GetByRealmAsync(string realm);
     }
 }

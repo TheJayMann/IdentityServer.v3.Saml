@@ -17,9 +17,9 @@
 using System.IdentityModel.Services;
 using System.Security.Claims;
 using Thinktecture.IdentityServer.Core.Models;
-using Thinktecture.IdentityServer.WsFederation.Models;
+using IdentityServer.v3.Saml.Models;
 
-namespace Thinktecture.IdentityServer.WsFederation.Validation
+namespace IdentityServer.v3.Saml.Validation
 {
     public class SignInValidationResult
     {
@@ -30,7 +30,7 @@ namespace Thinktecture.IdentityServer.WsFederation.Validation
         public bool IsSignInRequired { get; set; }
         public SignInMessage SignInMessage { get; set; }
 
-        public RelyingParty RelyingParty { get; set; }
+        public ServiceProvider ServiceProvider { get; set; }
         public SignInRequestMessage SignInRequestMessage { get; set; }
         
         public string ReplyUrl { get; set; }

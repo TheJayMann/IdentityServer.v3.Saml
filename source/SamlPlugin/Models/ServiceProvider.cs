@@ -17,9 +17,9 @@
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Thinktecture.IdentityServer.WsFederation.Models
+namespace IdentityServer.v3.Saml.Models
 {
-    public class RelyingParty
+    public class ServiceProvider
     {
         public string Name { get; set; }
         public bool Enabled { get; set; }

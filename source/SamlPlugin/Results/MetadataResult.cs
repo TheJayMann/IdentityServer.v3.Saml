@@ -24,7 +24,7 @@ using System.Web.Http;
 using System.Xml;
 using Thinktecture.IdentityServer.Core.Logging;
 
-namespace Thinktecture.IdentityServer.WsFederation.Results
+namespace IdentityServer.v3.Saml.Results
 {
     public class MetadataResult : IHttpActionResult
     {

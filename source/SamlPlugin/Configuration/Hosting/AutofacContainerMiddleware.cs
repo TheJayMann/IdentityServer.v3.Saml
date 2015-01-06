@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Thinktecture.IdentityServer.WsFederation.Hosting
+namespace IdentityServer.v3.Saml.Hosting
 {
     internal class AutofacContainerMiddleware
     {

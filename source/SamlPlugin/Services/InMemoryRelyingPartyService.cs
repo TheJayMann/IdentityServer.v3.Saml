@@ -16,22 +16,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Thinktecture.IdentityServer.WsFederation.Models;
+using IdentityServer.v3.Saml.Models;
 
-namespace Thinktecture.IdentityServer.WsFederation.Services
+namespace IdentityServer.v3.Saml.Services
 {
-    public class InMemoryRelyingPartyService : IRelyingPartyService
+    public class InMemoryServiceProviderService : IServiceProviderService
     {
-        IEnumerable<RelyingParty> _rps;
+        IEnumerable<ServiceProvider> _sps;
 
-        public InMemoryRelyingPartyService(IEnumerable<RelyingParty> rps)
+        public InMemoryServiceProviderService(IEnumerable<ServiceProvider> sps)
         {
-            _rps = rps;
+            _sps = sps;
         }
 
-        public Task<RelyingParty> GetByRealmAsync(string realm)
+        public Task<ServiceProvider> GetByRealmAsync(string realm)
         {
-            return Task.FromResult(_rps.FirstOrDefault(rp => rp.Realm == realm && rp.Enabled));
+            return Task.FromResult(_sps.FirstOrDefault(rp => rp.Realm == realm && rp.Enabled));
         }
     }
 }

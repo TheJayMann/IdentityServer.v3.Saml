@@ -16,9 +16,9 @@
 
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
-using Thinktecture.IdentityServer.WsFederation.Hosting;
+using IdentityServer.v3.Saml.Hosting;
 
-namespace Thinktecture.IdentityServer.WsFederation.Configuration
+namespace IdentityServer.v3.Saml.Configuration
 {
     internal static class WebApiConfig
     {

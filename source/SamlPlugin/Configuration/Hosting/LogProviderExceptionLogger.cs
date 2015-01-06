@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
 using Thinktecture.IdentityServer.Core.Logging;
 
-namespace Thinktecture.IdentityServer.WsFederation.Hosting
+namespace IdentityServer.v3.Saml.Hosting
 {
     internal class LogProviderExceptionLogger : IExceptionLogger
     {

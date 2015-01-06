@@ -21,7 +21,7 @@ using System.IdentityModel.Tokens;
 using Thinktecture.IdentityModel.Constants;
 using Thinktecture.IdentityServer.Core.Configuration;
 
-namespace Thinktecture.IdentityServer.WsFederation.ResponseHandling
+namespace IdentityServer.v3.Saml.ResponseHandling
 {
     public class MetadataResponseGenerator
     {

@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Thinktecture.IdentityServer.Core.Logging;
 
-namespace Thinktecture.IdentityServer.WsFederation.Results
+namespace IdentityServer.v3.Saml.Results
 {
     public class SignOutResult : IHttpActionResult
     {

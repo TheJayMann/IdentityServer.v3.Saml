@@ -16,7 +16,7 @@
 using System;
 using Thinktecture.IdentityServer.Core.Configuration;
 
-namespace Thinktecture.IdentityServer.WsFederation.Configuration
+namespace IdentityServer.v3.Saml.Configuration
 {
     public class WsFederationPluginOptions
     {
