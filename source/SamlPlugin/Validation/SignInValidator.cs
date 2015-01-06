@@ -26,16 +26,16 @@ namespace IdentityServer.v3.Saml.Validation
     public class SignInValidator
     {
         private readonly static ILog Logger = LogProvider.GetCurrentClassLogger();
-        private readonly IServiceProviderService _relyingParties;
+        private readonly IServiceProviderService _serviceProviders;
 
-        public SignInValidator(IServiceProviderService relyingParties)
+        public SignInValidator(IServiceProviderService serviceProviders)
         {
-            _relyingParties = relyingParties;
+            _serviceProviders = serviceProviders;
         }
 
         public async Task<SignInValidationResult> ValidateAsync(SignInRequestMessage message, ClaimsPrincipal subject)
         {
-            Logger.Info("Validating WS-Federation signin request");
+            Logger.Info("Validating Saml signin request");
             var result = new SignInValidationResult();
 
             if (message.HomeRealm.IsPresent())
@@ -51,11 +51,11 @@ namespace IdentityServer.v3.Saml.Validation
                 return result;
             };
 
-            var rp = await _relyingParties.GetByRealmAsync(message.Realm);
+            var rp = await _serviceProviders.GetByRealmAsync(message.Realm);
 
             if (rp == null || rp.Enabled == false)
             {
-                Logger.Error("Relying party not found: " + message.Realm);
+                Logger.Error("Service provider not found: " + message.Realm);
 
                 return new SignInValidationResult
                 {
@@ -64,7 +64,7 @@ namespace IdentityServer.v3.Saml.Validation
                 };
             }
 
-            Logger.InfoFormat("Relying party registration found: {0} / {1}", rp.Realm, rp.Name);
+            Logger.InfoFormat("Service provider registration found: {0} / {1}", rp.Realm, rp.Name);
 
             result.ReplyUrl = rp.ReplyUrl;
             Logger.InfoFormat("Reply URL set to: " + result.ReplyUrl);
