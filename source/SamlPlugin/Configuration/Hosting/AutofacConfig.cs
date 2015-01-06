@@ -31,7 +31,7 @@ namespace IdentityServer.v3.Saml.Configuration
     {
         static ILog Logger = LogProvider.GetCurrentClassLogger();
 
-        public static IContainer Configure(WsFederationPluginOptions options)
+        public static IContainer Configure(SamlPluginOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");
 
@@ -42,7 +42,7 @@ namespace IdentityServer.v3.Saml.Configuration
 
             // mandatory from factory
             builder.Register(factory.UserService);
-            builder.Register(factory.RelyingPartyService);
+            builder.Register(factory.ServiceProviderService);
 
             // validators
             builder.RegisterType<SignInValidator>().AsSelf();

@@ -25,7 +25,7 @@ namespace Thinktecture.IdentityServer.Core.Configuration
 {
     public static class PluginAppBuilderExtensions
     {
-        public static IAppBuilder UseWsFederationPlugin(this IAppBuilder app, WsFederationPluginOptions options)
+        public static IAppBuilder UseSamlPlugin(this IAppBuilder app, SamlPluginOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");
             options.Validate();
@@ -36,9 +36,9 @@ namespace Thinktecture.IdentityServer.Core.Configuration
                 {
                     wsfedApp.UseCookieAuthentication(new CookieAuthenticationOptions
                     {
-                        AuthenticationType = WsFederationPluginOptions.CookieName,
+                        AuthenticationType = SamlPluginOptions.CookieName,
                         AuthenticationMode = AuthenticationMode.Passive,
-                        CookieName = options.IdentityServerOptions.AuthenticationOptions.CookieOptions.Prefix + WsFederationPluginOptions.CookieName,
+                        CookieName = options.IdentityServerOptions.AuthenticationOptions.CookieOptions.Prefix + SamlPluginOptions.CookieName,
                     });
 
                     wsfedApp.Use<AutofacContainerMiddleware>(AutofacConfig.Configure(options));

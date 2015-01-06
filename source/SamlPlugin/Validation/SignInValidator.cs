@@ -60,7 +60,7 @@ namespace IdentityServer.v3.Saml.Validation
                 return new SignInValidationResult
                 {
                     IsError = true,
-                    Error = "invalid_relying_party"
+                    Error = "invalid_service_provider"
                 };
             }
 

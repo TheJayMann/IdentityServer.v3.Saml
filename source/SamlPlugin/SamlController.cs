@@ -48,9 +48,9 @@ namespace IdentityServer.v3.Saml
         private readonly SignInResponseGenerator _signInResponseGenerator;
         private readonly MetadataResponseGenerator _metadataResponseGenerator;
         private readonly ITrackingCookieService _cookies;
-        private readonly WsFederationPluginOptions _wsFedOptions;
+        private readonly SamlPluginOptions _wsFedOptions;
 
-        public WsFederationController(IdentityServerOptions options, IUserService users, SignInValidator validator, SignInResponseGenerator signInResponseGenerator, MetadataResponseGenerator metadataResponseGenerator, ITrackingCookieService cookies, WsFederationPluginOptions wsFedOptions)
+        public WsFederationController(IdentityServerOptions options, IUserService users, SignInValidator validator, SignInResponseGenerator signInResponseGenerator, MetadataResponseGenerator metadataResponseGenerator, ITrackingCookieService cookies, SamlPluginOptions wsFedOptions)
         {
             _options = options;
             _validator = validator;
@@ -95,7 +95,7 @@ namespace IdentityServer.v3.Saml
         {
             Logger.Info("WS-Federation signout callback");
 
-            var urls = await _cookies.GetValuesAndDeleteCookieAsync(WsFederationPluginOptions.CookieName);
+            var urls = await _cookies.GetValuesAndDeleteCookieAsync(SamlPluginOptions.CookieName);
             return new SignOutResult(urls);
         }
 
@@ -130,7 +130,7 @@ namespace IdentityServer.v3.Saml
             }
 
             var responseMessage = await _signInResponseGenerator.GenerateResponseAsync(result);
-            await _cookies.AddValueAsync(WsFederationPluginOptions.CookieName, result.ReplyUrl);
+            await _cookies.AddValueAsync(SamlPluginOptions.CookieName, result.ReplyUrl);
 
             return new SignInResult(responseMessage);
         }

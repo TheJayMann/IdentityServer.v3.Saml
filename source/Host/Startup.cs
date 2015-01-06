@@ -42,22 +42,22 @@ namespace Host
 
         private void ConfigurePlugins(IAppBuilder pluginApp, IdentityServerOptions options)
         {
-            var factory = new WsFederationServiceFactory
+            var factory = new SamlServiceFactory
             {
                 UserService = options.Factory.UserService,
-                RelyingPartyService = new Registration<IServiceProviderService>(typeof(InMemoryServiceProviderService))
+                ServiceProviderService = new Registration<IServiceProviderService>(typeof(InMemoryServiceProviderService))
             };
 
             // data sources for in-memory services
-            factory.Register(new Registration<IEnumerable<ServiceProvider>>(RelyingParties.Get()));
+            factory.Register(new Registration<IEnumerable<ServiceProvider>>(ServiceProviders.Get()));
 
-            var wsFedOptions = new WsFederationPluginOptions
+            var wsFedOptions = new SamlPluginOptions
             {
                 IdentityServerOptions = options,
                 Factory = factory
             };
 
-            pluginApp.UseWsFederationPlugin(wsFedOptions);
+            pluginApp.UseSamlPlugin(wsFedOptions);
         }
     }
 }

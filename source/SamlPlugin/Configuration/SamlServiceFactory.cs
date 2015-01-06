@@ -23,7 +23,7 @@ using IdentityServer.v3.Saml.Services;
 
 namespace IdentityServer.v3.Saml.Configuration
 {
-    public class WsFederationServiceFactory
+    public class SamlServiceFactory
     {
         private static ILog Logger = LogProvider.GetCurrentClassLogger();
 
@@ -60,12 +60,12 @@ namespace IdentityServer.v3.Saml.Configuration
 
         // mandatory (external)
         public Registration<IUserService> UserService { get; set; }
-        public Registration<IServiceProviderService> RelyingPartyService { get; set; }
+        public Registration<IServiceProviderService> ServiceProviderService { get; set; }
 
         public void Validate()
         {
             if (UserService == null) LogAndStop("UserService not configured");
-            if (RelyingPartyService == null) LogAndStop("RelyingPartyService not configured");
+            if (ServiceProviderService == null) LogAndStop("ServiceProviderService not configured");
         }
 
         private void LogAndStop(string message)

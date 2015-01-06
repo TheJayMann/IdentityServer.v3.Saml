@@ -18,7 +18,7 @@ using Thinktecture.IdentityServer.Core.Configuration;
 
 namespace IdentityServer.v3.Saml.Configuration
 {
-    public class WsFederationPluginOptions
+    public class SamlPluginOptions
     {
         public const string CookieName = "IdSvr.WsFedTracking";
 
@@ -31,7 +31,7 @@ namespace IdentityServer.v3.Saml.Configuration
         }
         
         public IdentityServerOptions IdentityServerOptions { get; set; }
-        public WsFederationServiceFactory Factory { get; set; }
+        public SamlServiceFactory Factory { get; set; }
         public EndpointSettings MetadataEndpoint { get; set; }
         
         public IDataProtector DataProtector
@@ -44,7 +44,7 @@ namespace IdentityServer.v3.Saml.Configuration
 
         public string MapPath { get; set; }
 
-        public WsFederationPluginOptions()
+        public SamlPluginOptions()
         {
             MapPath = "/wsfed";
             MetadataEndpoint = EndpointSettings.Enabled;

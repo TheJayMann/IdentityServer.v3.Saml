@@ -4,7 +4,7 @@ using IdentityServer.v3.Saml.Models;
 
 namespace Host.Config
 {
-    public class RelyingParties
+    public class ServiceProviders
     {
         public static IEnumerable<ServiceProvider> Get()
         {
