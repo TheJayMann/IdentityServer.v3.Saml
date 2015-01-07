@@ -45,7 +45,7 @@ namespace IdentityServer.v3.Saml.Hosting
             }))
             {
                 // this makes scope available for downstream frameworks
-                context.Set<ILifetimeScope>("idsrv:WsFedAutofacScope", scope);
+                context.Set<ILifetimeScope>("idsrv:SamlAutofacScope", scope);
                 await _next(env);
             }
         }
