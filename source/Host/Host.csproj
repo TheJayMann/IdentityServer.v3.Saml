@@ -99,7 +99,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SamlPlugin\SamlPlugin.csproj">
       <Project>{4c93cd29-54c0-43cc-bf45-68e0dec91caa}</Project>
-      <Name>WsFederationPlugin</Name>
+      <Name>SamlPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

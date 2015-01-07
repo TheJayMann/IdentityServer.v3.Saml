@@ -32,18 +32,18 @@ namespace Thinktecture.IdentityServer.Core.Configuration
 
             options.IdentityServerOptions.ProtocolLogoutUrls.Add(options.LogoutUrl);
 
-            app.Map(options.MapPath, wsfedApp =>
+            app.Map(options.MapPath, samlApp =>
                 {
-                    wsfedApp.UseCookieAuthentication(new CookieAuthenticationOptions
+                    samlApp.UseCookieAuthentication(new CookieAuthenticationOptions
                     {
                         AuthenticationType = SamlPluginOptions.CookieName,
                         AuthenticationMode = AuthenticationMode.Passive,
                         CookieName = options.IdentityServerOptions.AuthenticationOptions.CookieOptions.Prefix + SamlPluginOptions.CookieName,
                     });
 
-                    wsfedApp.Use<AutofacContainerMiddleware>(AutofacConfig.Configure(options));
+                    samlApp.Use<AutofacContainerMiddleware>(AutofacConfig.Configure(options));
                     Microsoft.Owin.Infrastructure.SignatureConversions.AddConversions(app);
-                    wsfedApp.UseWebApi(WebApiConfig.Configure());
+                    samlApp.UseWebApi(WebApiConfig.Configure());
                 });
 
             return app;

@@ -51,13 +51,13 @@ namespace Host
             // data sources for in-memory services
             factory.Register(new Registration<IEnumerable<ServiceProvider>>(ServiceProviders.Get()));
 
-            var wsFedOptions = new SamlPluginOptions
+            var samlOptions = new SamlPluginOptions
             {
                 IdentityServerOptions = options,
                 Factory = factory
             };
 
-            pluginApp.UseSamlPlugin(wsFedOptions);
+            pluginApp.UseSamlPlugin(samlOptions);
         }
     }
 }

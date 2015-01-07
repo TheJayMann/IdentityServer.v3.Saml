@@ -20,7 +20,7 @@ namespace IdentityServer.v3.Saml.Configuration
 {
     public class SamlPluginOptions
     {
-        public const string CookieName = "IdSvr.WsFedTracking";
+        public const string CookieName = "IdSvr.SamlTracking";
 
         public string LogoutUrl
         {
@@ -46,7 +46,7 @@ namespace IdentityServer.v3.Saml.Configuration
 
         public SamlPluginOptions()
         {
-            MapPath = "/wsfed";
+            MapPath = "/saml";
             MetadataEndpoint = EndpointSettings.Enabled;
         }
 

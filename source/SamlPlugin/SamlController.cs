@@ -39,7 +39,7 @@ namespace IdentityServer.v3.Saml
     [RoutePrefix("")]
     [NoCache]
     [SecurityHeaders(EnableCsp=false)]
-    public class WsFederationController : ApiController
+    public class SamlController : ApiController
     {
         private readonly static ILog Logger = LogProvider.GetCurrentClassLogger();
 
@@ -48,22 +48,22 @@ namespace IdentityServer.v3.Saml
         private readonly SignInResponseGenerator _signInResponseGenerator;
         private readonly MetadataResponseGenerator _metadataResponseGenerator;
         private readonly ITrackingCookieService _cookies;
-        private readonly SamlPluginOptions _wsFedOptions;
+        private readonly SamlPluginOptions _samlOptions;
 
-        public WsFederationController(IdentityServerOptions options, IUserService users, SignInValidator validator, SignInResponseGenerator signInResponseGenerator, MetadataResponseGenerator metadataResponseGenerator, ITrackingCookieService cookies, SamlPluginOptions wsFedOptions)
+        public SamlController(IdentityServerOptions options, IUserService users, SignInValidator validator, SignInResponseGenerator signInResponseGenerator, MetadataResponseGenerator metadataResponseGenerator, ITrackingCookieService cookies, SamlPluginOptions wsFedOptions)
         {
             _options = options;
             _validator = validator;
             _signInResponseGenerator = signInResponseGenerator;
             _metadataResponseGenerator = metadataResponseGenerator;
             _cookies = cookies;
-            _wsFedOptions = wsFedOptions;
+            _samlOptions = wsFedOptions;
         }
 
         [Route("")]
         public async Task<IHttpActionResult> Get()
         {
-            Logger.Info("Start WS-Federation request");
+            Logger.Info("Start Saml request");
             Logger.Debug(Request.RequestUri.AbsoluteUri);
 
             WSFederationMessage message;
@@ -72,28 +72,28 @@ namespace IdentityServer.v3.Saml
                 var signin = message as SignInRequestMessage;
                 if (signin != null)
                 {
-                    Logger.Info("WsFederation signin request");
+                    Logger.Info("Saml signin request");
                     return await ProcessSignInAsync(signin);
                 }
 
                 var signout = message as SignOutRequestMessage;
                 if (signout != null)
                 {
-                    Logger.Info("WsFederation signout request");
+                    Logger.Info("Saml signout request");
 
                     var url = this.Request.GetOwinContext().Environment.GetIdentityServerLogoutUrl();
                     return Redirect(url);
                 }
             }
 
-            return BadRequest("Invalid WS-Federation request");
+            return BadRequest("Invalid Saml request");
         }
 
         [Route("signout")]
         [HttpGet]
         public async Task<IHttpActionResult> SignOutCallback()
         {
-            Logger.Info("WS-Federation signout callback");
+            Logger.Info("Saml signout callback");
 
             var urls = await _cookies.GetValuesAndDeleteCookieAsync(SamlPluginOptions.CookieName);
             return new SignOutResult(urls);
@@ -102,15 +102,15 @@ namespace IdentityServer.v3.Saml
         [Route("metadata")]
         public IHttpActionResult GetMetadata()
         {
-            Logger.Info("WS-Federation metadata request");
+            Logger.Info("Saml metadata request");
 
-            if (_wsFedOptions.MetadataEndpoint.IsEnabled == false)
+            if (_samlOptions.MetadataEndpoint.IsEnabled == false)
             {
                 Logger.Warn("Endpoint is disabled. Aborting.");
                 return NotFound();
             }
 
-            var ep = Request.GetOwinContext().Environment.GetIdentityServerBaseUrl() + _wsFedOptions.MapPath.Substring(1);
+            var ep = Request.GetOwinContext().Environment.GetIdentityServerBaseUrl() + _samlOptions.MapPath.Substring(1);
             var entity = _metadataResponseGenerator.Generate(ep);
 
             return new MetadataResult(entity);

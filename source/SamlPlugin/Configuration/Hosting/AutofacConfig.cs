@@ -57,7 +57,7 @@ namespace IdentityServer.v3.Saml.Configuration
             builder.RegisterInstance(options.IdentityServerOptions).AsSelf();
 
             // load core controller
-            builder.RegisterApiControllers(typeof(WsFederationController).Assembly);
+            builder.RegisterApiControllers(typeof(SamlController).Assembly);
 
             // register additional dependencies from identity server
             foreach (var registration in options.IdentityServerOptions.Factory.Registrations)
