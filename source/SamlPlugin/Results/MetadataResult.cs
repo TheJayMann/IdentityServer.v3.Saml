@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-using System.IdentityModel.Metadata;
-using System.IO;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Xml;
 using Thinktecture.IdentityServer.Core.Logging;
 
 namespace IdentityServer.v3.Saml.Results
@@ -29,11 +27,13 @@ namespace IdentityServer.v3.Saml.Results
     public class MetadataResult : IHttpActionResult
     {
         private readonly static ILog Logger = LogProvider.GetCurrentClassLogger();
-        private readonly EntityDescriptor _entity;
+        private readonly X509Certificate2 _certificate;
+        private readonly bool _sign;
 
-        public MetadataResult(EntityDescriptor entity)
+        public MetadataResult(bool sign, System.Security.Cryptography.X509Certificates.X509Certificate2 certificate)
         {
-            _entity = entity;
+            _sign = sign;
+            _certificate = certificate;
         }
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
@@ -43,12 +43,17 @@ namespace IdentityServer.v3.Saml.Results
 
         private HttpResponseMessage Execute()
         {
-            var ser = new MetadataSerializer();
-            var sb = new StringBuilder(512);
+            var configuration = SAML2.Config.Saml2Config.GetConfig();
+            configuration.ServiceProvider.SigningCertificate.Certificate = _certificate;
 
-            ser.WriteMetadata(XmlWriter.Create(new StringWriter(sb), new XmlWriterSettings { OmitXmlDeclaration = true }), _entity);
+            var keyinfo = new System.Security.Cryptography.Xml.KeyInfo();
+            var keyClause = new System.Security.Cryptography.Xml.KeyInfoX509Data(configuration.ServiceProvider.SigningCertificate.GetCertificate(),
+                                    X509IncludeOption.EndCertOnly);
+            keyinfo.AddClause(keyClause);
 
-            var content = new StringContent(sb.ToString(), Encoding.UTF8, "application/xml");
+            var doc = new SAML2.Saml20MetadataDocument(configuration, keyinfo, _sign);
+
+            var content = new StringContent(doc.ToXml(), Encoding.UTF8, "application/xml");
 
             Logger.Debug("Returning Saml metadata response");
             return new HttpResponseMessage { Content = content };

@@ -110,10 +110,9 @@ namespace IdentityServer.v3.Saml
                 return NotFound();
             }
 
-            var ep = Request.GetOwinContext().Environment.GetIdentityServerBaseUrl() + _samlOptions.MapPath.Substring(1);
-            var entity = _metadataResponseGenerator.Generate(ep);
+            var sign = bool.Parse((Request.GetOwinContext().Request.Query.Get("sign") ?? "true"));
 
-            return new MetadataResult(entity);
+            return new MetadataResult(sign, _options.SigningCertificate);
         }
 
         private async Task<IHttpActionResult> ProcessSignInAsync(SignInRequestMessage msg)
