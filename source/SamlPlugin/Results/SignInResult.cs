@@ -44,7 +44,7 @@ namespace IdentityServer.v3.Saml.Results
             var response = new HttpResponseMessage();
             response.Content = new StringContent(_message.WriteFormPost(), Encoding.UTF8, "text/html");
 
-            Logger.Debug("Returning WS-Federation signin response");
+            Logger.Debug("Returning Saml signin response");
             return response;
         }
     }

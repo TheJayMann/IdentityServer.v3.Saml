@@ -50,7 +50,7 @@ namespace IdentityServer.v3.Saml.Results
 
             var content = new StringContent(sb.ToString(), Encoding.UTF8, "application/xml");
 
-            Logger.Debug("Returning WS-Federation metadata response");
+            Logger.Debug("Returning Saml metadata response");
             return new HttpResponseMessage { Content = content };
         }
     }

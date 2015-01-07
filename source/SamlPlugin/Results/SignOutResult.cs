@@ -51,7 +51,7 @@ namespace IdentityServer.v3.Saml.Results
 
             var content = new StringContent(sb.ToString(), Encoding.UTF8, "text/html");
 
-            Logger.Debug("Returning WS-Federation signout response");
+            Logger.Debug("Returning Saml signout response");
             return new HttpResponseMessage { Content = content };
         }
     }

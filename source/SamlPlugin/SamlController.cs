@@ -50,14 +50,14 @@ namespace IdentityServer.v3.Saml
         private readonly ITrackingCookieService _cookies;
         private readonly SamlPluginOptions _samlOptions;
 
-        public SamlController(IdentityServerOptions options, IUserService users, SignInValidator validator, SignInResponseGenerator signInResponseGenerator, MetadataResponseGenerator metadataResponseGenerator, ITrackingCookieService cookies, SamlPluginOptions wsFedOptions)
+        public SamlController(IdentityServerOptions options, IUserService users, SignInValidator validator, SignInResponseGenerator signInResponseGenerator, MetadataResponseGenerator metadataResponseGenerator, ITrackingCookieService cookies, SamlPluginOptions pluginOptions)
         {
             _options = options;
             _validator = validator;
             _signInResponseGenerator = signInResponseGenerator;
             _metadataResponseGenerator = metadataResponseGenerator;
             _cookies = cookies;
-            _samlOptions = wsFedOptions;
+            _samlOptions = pluginOptions;
         }
 
         [Route("")]

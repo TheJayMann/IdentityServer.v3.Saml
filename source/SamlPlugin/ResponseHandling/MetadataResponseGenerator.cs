@@ -32,9 +32,9 @@ namespace IdentityServer.v3.Saml.ResponseHandling
             _options = options;
         }
 
-        public EntityDescriptor Generate(string wsfedEndpoint)
+        public EntityDescriptor Generate(string endpoint)
         {
-            var tokenServiceDescriptor = GetTokenServiceDescriptor(wsfedEndpoint);
+            var tokenServiceDescriptor = GetTokenServiceDescriptor(endpoint);
 
             var id = new EntityId(_options.IssuerUri);
             var entity = new EntityDescriptor(id);
@@ -44,14 +44,14 @@ namespace IdentityServer.v3.Saml.ResponseHandling
             return entity;
         }
 
-        private SecurityTokenServiceDescriptor GetTokenServiceDescriptor(string wsfedEndpoint)
+        private SecurityTokenServiceDescriptor GetTokenServiceDescriptor(string endpoint)
         {
             var tokenService = new SecurityTokenServiceDescriptor();
             tokenService.ServiceDescription = _options.SiteName;
             tokenService.Keys.Add(GetSigningKeyDescriptor());
 
-            tokenService.PassiveRequestorEndpoints.Add(new EndpointReference(wsfedEndpoint));
-            tokenService.SecurityTokenServiceEndpoints.Add(new EndpointReference(wsfedEndpoint));
+            tokenService.PassiveRequestorEndpoints.Add(new EndpointReference(endpoint));
+            tokenService.SecurityTokenServiceEndpoints.Add(new EndpointReference(endpoint));
 
             tokenService.TokenTypesOffered.Add(new Uri(TokenTypes.OasisWssSaml11TokenProfile11));
             tokenService.TokenTypesOffered.Add(new Uri(TokenTypes.OasisWssSaml2TokenProfile11));

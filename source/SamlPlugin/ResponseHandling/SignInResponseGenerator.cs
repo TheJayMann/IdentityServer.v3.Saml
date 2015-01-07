@@ -45,7 +45,7 @@ namespace IdentityServer.v3.Saml.ResponseHandling
 
         public async Task<SignInResponseMessage> GenerateResponseAsync(SignInValidationResult validationResult)
         {
-            Logger.Info("Creating WS-Federation signin response");
+            Logger.Info("Creating Saml signin response");
 
             // create subject
             var outgoingSubject = await CreateSubjectAsync(validationResult);
